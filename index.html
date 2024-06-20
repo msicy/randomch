@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>(오글거리는)랜덤 캐릭터 이름 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .input-container {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        const prefixes = [
+            "블랙", "다크", "드래곤", "파이어", "섀도우", "라이트", "썬더", 
+            "스톰", "윈드", "미스틱", "고스트", "플레임", "아이언", "실버", "골드"
+        ];
+        const suffixes = [
+            "블레이드", "위저드", "헌터", "킹", "퀸", "마스터", "워리어", 
+            "메이지", "어쌔신", "레인저", "팔라딘", "버서커", "로닌", "샤먼", "로드"
+        ];
+        const adjectives = [
+            "강한", "용감한", "지혜로운", "신비로운", "고귀한", "불멸의", 
+            "영원한", "화려한", "고독한", "고요한", "날카로운", "차가운", "뜨거운", 
+            "화끈한", "냉정한", "열정적인", "차분한", "도전적인", "활기찬"
+        ];
+        const nouns = [
+            "기사", "마법사", "전사", "도적", "궁수", "사냥꾼", "성기사", 
+            "검사", "무사", "용사", "마도사", "암살자", "영웅", "주술사", "드루이드"
+        ];
+        const trendingWords = [
+            "인싸", "핫한", "쌉가능", "인기남", "인기녀", "갓생", "존잘", 
+            "존예", "완벽남", "완벽녀", "귀염뽀짝", "멋쁨", "쿨내진동", "핵잼", 
+            "좋아요", "구독중", "빵터짐", "대박사건", "오지다", "쩐다" , "섹시"
+        ];
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateCharacterName() {
+            const prefix = getRandomElement(prefixes);
+            const suffix = getRandomElement(suffixes);
+            const adjective = getRandomElement(adjectives);
+            const noun = getRandomElement(nouns);
+            const trendingWord = getRandomElement(trendingWords);
+
+            const pattern = Math.floor(Math.random() * 4);
+            if (pattern === 0) {
+                return `${prefix} ${suffix}`;
+            } else if (pattern === 1) {
+                return `${adjective} ${noun}`;
+            } else if (pattern === 2) {
+                return `${prefix} ${noun}`;
+            } else {
+                return `${trendingWord} ${noun}`;
+            }
+        }
+
+        function displayGeneratedName() {
+            const nameDisplay = document.getElementById('nameDisplay');
+            nameDisplay.innerHTML = `추천 이름:<br>${generateCharacterName()}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>랜덤 캐릭터 이름 생성기</h1>
+    <button onclick="displayGeneratedName()">랜덤 이름 생성</button>
+    <p id="nameDisplay">추천 이름: </p>
+</body>
+</html>
